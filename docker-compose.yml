@@ -6,7 +6,13 @@ services:
     container_name: pytest
     volumes:
       - .:/app
-    command: pytest --cov=app --cov-report=term-missing
+# -v: Verbose output showing each test name and result
+# -s: Show print statements and real-time output
+# --cov=app: Calculate code coverage for the app directory
+# --cov-report=html: Generate an HTML report of the coverage results
+# --showlocals: Display local variables in tracebacks for easier debugging
+# --durations=0: Show execution time for all tests, sorted by slowest first
+    command: pytest -vs --cov=app --cov-report=html --showlocals --durations=0
     ports:
       - "8000:8000"
     environment:
